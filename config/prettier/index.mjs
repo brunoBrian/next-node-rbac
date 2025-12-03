@@ -13,7 +13,7 @@ const config = {
   arrowParens: "always",
   endOfLine: "auto",
   bracketSameLine: false,
-  singleQuote: true,
+  singleQuote: false,
   jsxSingleQuote: true,
 };
 
