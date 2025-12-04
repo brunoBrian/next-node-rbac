@@ -86,4 +86,22 @@ Roles & permissions.
 
 ### Run migration
 
+cd /apps/api
+
 - npm prisma migrate dev
+
+## Prisma studio
+
+### Run prisma Studio
+
+cd /apps/api
+
+- pnpm prisma studio
+
+## Prisma studio
+
+### Run Seed
+
+cd /apps/api
+
+- pnpm prisma db seed
