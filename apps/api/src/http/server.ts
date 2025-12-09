@@ -19,6 +19,8 @@ import { createAccount } from "./routes/auth/create-account";
 import { getProfile } from "./routes/auth/get-profile";
 import { requestPasswordRecover } from "./routes/auth/request-password-recover";
 import { resetPassword } from "./routes/auth/reset-password";
+import { getMembers, getMembers } from "./routes/members/get-members";
+import { updateMember } from "./routes/members/update-member";
 import { createOrganization } from "./routes/orgs/create-organization";
 import { getMembership } from "./routes/orgs/get-membership";
 import { getOrganization } from "./routes/orgs/get-organization";
@@ -91,6 +93,7 @@ app.register(getProjects);
 app.register(updateProject);
 
 app.register(getMembers);
+app.register(updateMember);
 
 app.setErrorHandler((error, _, reply) => {
   console.error(error);
