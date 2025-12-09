@@ -20,7 +20,8 @@ import { getProfile } from "./routes/auth/get-profile";
 import { requestPasswordRecover } from "./routes/auth/request-password-recover";
 import { resetPassword } from "./routes/auth/reset-password";
 import { getMembers, getMembers } from "./routes/members/get-members";
-import { updateMember } from "./routes/members/update-member";
+import { removeMember } from "./routes/members/remove-member";
+import { updateMember, updateMember } from "./routes/members/update-member";
 import { createOrganization } from "./routes/orgs/create-organization";
 import { getMembership } from "./routes/orgs/get-membership";
 import { getOrganization } from "./routes/orgs/get-organization";
@@ -94,6 +95,7 @@ app.register(updateProject);
 
 app.register(getMembers);
 app.register(updateMember);
+app.register(removeMember);
 
 app.setErrorHandler((error, _, reply) => {
   console.error(error);
