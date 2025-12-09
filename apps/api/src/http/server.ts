@@ -90,6 +90,8 @@ app.register(getProject);
 app.register(getProjects);
 app.register(updateProject);
 
+app.register(getMembers);
+
 app.setErrorHandler((error, _, reply) => {
   console.error(error);
 
