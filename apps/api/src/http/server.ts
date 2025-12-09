@@ -20,6 +20,8 @@ import { getProfile } from "./routes/auth/get-profile";
 import { requestPasswordRecover } from "./routes/auth/request-password-recover";
 import { resetPassword } from "./routes/auth/reset-password";
 import { createInvite } from "./routes/invites/create-invite";
+import { getInvite } from "./routes/invites/get-invite";
+import { getInvites } from "./routes/invites/get-invites";
 import { getMembers, getMembers } from "./routes/members/get-members";
 import { removeMember } from "./routes/members/remove-member";
 import { updateMember, updateMember } from "./routes/members/update-member";
@@ -35,7 +37,6 @@ import { deleteProject } from "./routes/projects/delete-project";
 import { getProject } from "./routes/projects/get-project";
 import { getProjects } from "./routes/projects/get-projects";
 import { updateProject } from "./routes/projects/update-project";
-import { getInvite } from "./routes/invites/get-invite";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -101,6 +102,7 @@ app.register(removeMember);
 
 app.register(createInvite);
 app.register(getInvite);
+app.register(getInvites);
 
 app.setErrorHandler((error, _, reply) => {
   console.error(error);
