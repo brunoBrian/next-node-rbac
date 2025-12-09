@@ -41,6 +41,7 @@ import { deleteProject } from "./routes/projects/delete-project";
 import { getProject } from "./routes/projects/get-project";
 import { getProjects } from "./routes/projects/get-projects";
 import { updateProject } from "./routes/projects/update-project";
+import { getOrganizationBilling } from "./routes/billing/get-organization-billing";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -111,6 +112,8 @@ app.register(acceptInvite);
 app.register(rejectInvite);
 app.register(revokeInvite);
 app.register(getPendingInvites);
+
+app.register(getOrganizationBilling);
 
 app.setErrorHandler((error, _, reply) => {
   console.error(error);
