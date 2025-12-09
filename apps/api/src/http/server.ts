@@ -39,6 +39,7 @@ import { deleteProject } from "./routes/projects/delete-project";
 import { getProject } from "./routes/projects/get-project";
 import { getProjects } from "./routes/projects/get-projects";
 import { updateProject } from "./routes/projects/update-project";
+import { revokeInvite } from "./routes/invites/revoke-invite";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -107,6 +108,7 @@ app.register(getInvite);
 app.register(getInvites);
 app.register(acceptInvite);
 app.register(rejectInvite);
+app.register(revokeInvite);
 
 app.setErrorHandler((error, _, reply) => {
   console.error(error);
