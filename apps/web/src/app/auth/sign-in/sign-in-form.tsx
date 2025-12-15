@@ -3,7 +3,7 @@
 import { AlertTriangle, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useActionState, useState, useTransition } from "react";
+import { FormEvent, useState, useTransition } from "react";
 
 import githubIcon from "@/assets/github-icon.svg";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
