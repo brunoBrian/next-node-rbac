@@ -99,6 +99,9 @@ importers:
       '@saas/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@saas/env':
+        specifier: workspace:*
+        version: link:../../packages/env
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -108,6 +111,9 @@ importers:
       cookies-next:
         specifier: ^6.1.1
         version: 6.1.1(next@16.0.10)(react@19.2.1)
+      dotenv-cli:
+        specifier: ^7.4.1
+        version: 7.4.4
       ky:
         specifier: ^1.14.1
         version: 1.14.1
@@ -133,9 +139,6 @@ importers:
         specifier: ^3.22.4
         version: 3.25.76
     devDependencies:
-      '@saas/env':
-        specifier: workspace:*
-        version: link:../../packages/env
       '@saas/eslint-config':
         specifier: workspace:*
         version: link:../../config/eslint-config
@@ -157,9 +160,6 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.2.3(@types/react@19.2.7)
-      dotenv-cli:
-        specifier: ^7.4.1
-        version: 7.4.4
       tailwindcss:
         specifier: ^4
         version: 4.1.18
@@ -2632,12 +2632,12 @@ packages:
       dotenv: 16.6.1
       dotenv-expand: 10.0.0
       minimist: 1.2.8
-    dev: true
+    dev: false
 
   /dotenv-expand@10.0.0:
     resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
     engines: {node: '>=12'}
-    dev: true
+    dev: false
 
   /dotenv-expand@12.0.3:
     resolution: {integrity: sha512-uc47g4b+4k/M/SeaW1y4OApx+mtLWl92l5LMPP0GNXctZqELk+YGgOPIIC5elYmUH4OuoK3JLhuRUYegeySiFA==}
@@ -2649,6 +2649,7 @@ packages:
   /dotenv@16.6.1:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
+    dev: false
 
   /dotenv@17.2.3:
     resolution: {integrity: sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==}
