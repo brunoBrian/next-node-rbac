@@ -40,7 +40,7 @@ export async function getMembership(app: FastifyInstance) {
           membership: {
             id: membership.id,
             role: membership.role,
-            userId: z.string().uuid(),
+            userId: membership.userId,
             organizationId: membership.organizationId,
           },
         };
