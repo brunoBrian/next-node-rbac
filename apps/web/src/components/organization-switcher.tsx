@@ -17,7 +17,7 @@ import {
 } from "./ui/dropdown-menu";
 
 export async function OrganizationSwitcher() {
-  const currentOrg = getCurrentOrg();
+  const currentOrg = await getCurrentOrg();
 
   const { organizations } = await getOrganizations();
 
