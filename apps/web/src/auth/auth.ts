@@ -14,7 +14,7 @@ export async function getCurrentOrg() {
 }
 
 export async function getCurrentMembership() {
-  const org = getCurrentOrg();
+  const org = await getCurrentOrg();
 
   if (!org) {
     return null;
