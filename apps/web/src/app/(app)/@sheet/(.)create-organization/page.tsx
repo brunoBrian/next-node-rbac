@@ -1,3 +1,7 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import {
   Sheet,
   SheetContent,
@@ -8,14 +12,19 @@ import {
 import { OrganizationForm } from "../../create-organization/organization-form";
 
 export default function CreateOrganization() {
+  const router = useRouter();
   return (
-    <Sheet defaultOpen>
+    <Sheet
+      defaultOpen
+      onOpenChange={() => {
+        router.back();
+      }}
+    >
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Create organization</SheetTitle>
         </SheetHeader>
-
-        <div className="p-4">
+        <div className="px-4 py-4">
           <OrganizationForm />
         </div>
       </SheetContent>
