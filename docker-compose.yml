@@ -9,3 +9,7 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=next-saas
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"

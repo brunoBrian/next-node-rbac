@@ -1,10 +1,10 @@
-import { roleSchema } from "@saas/auth";
-import type { FastifyInstance } from "fastify";
-import type { ZodTypeProvider } from "fastify-type-provider-zod";
-import { z } from "zod";
+import { roleSchema } from "@saas/auth"
+import type { FastifyInstance } from "fastify"
+import type { ZodTypeProvider } from "fastify-type-provider-zod"
+import { z } from "zod"
 
-import { auth } from "@/http/middlewares/auth";
-import { prisma } from "@/lib/prisma";
+import { auth } from "@/http/middlewares/auth"
+import { prisma } from "@/lib/prisma"
 
 export async function getOrganizations(app: FastifyInstance) {
   app
@@ -26,14 +26,22 @@ export async function getOrganizations(app: FastifyInstance) {
                   slug: z.string(),
                   avatarUrl: z.string().url().nullable(),
                   role: roleSchema,
-                }),
+                })
               ),
             }),
           },
         },
       },
       async (request) => {
-        const userId = await request.getCurrentUserId();
+        const userId = await request.getCurrentUserId()
+
+        const cacheKey = `user:${userId}:organizations`
+
+        const cachedOrganizations = await app.redis.get(cacheKey)
+
+        if (cachedOrganizations) {
+          return { organizations: JSON.parse(cachedOrganizations) }
+        }
 
         const organizations = await prisma.organization.findMany({
           select: {
@@ -57,18 +65,25 @@ export async function getOrganizations(app: FastifyInstance) {
               },
             },
           },
-        });
+        })
 
         const organizationsWithUserRole = organizations.map(
           ({ members, ...org }) => {
             return {
               ...org,
               role: members[0].role,
-            };
-          },
-        );
+            }
+          }
+        )
 
-        return { organizations: organizationsWithUserRole };
-      },
-    );
+        await app.redis.set(
+          cacheKey,
+          JSON.stringify(organizationsWithUserRole),
+          "EX",
+          60 * 60
+        )
+
+        return { organizations: organizationsWithUserRole }
+      }
+    )
 }

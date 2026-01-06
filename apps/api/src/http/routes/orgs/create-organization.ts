@@ -1,11 +1,11 @@
-import type { FastifyInstance } from "fastify";
-import type { ZodTypeProvider } from "fastify-type-provider-zod";
-import { z } from "zod";
+import type { FastifyInstance } from "fastify"
+import type { ZodTypeProvider } from "fastify-type-provider-zod"
+import { z } from "zod"
 
-import { auth } from "@/http/middlewares/auth";
-import { BadRequestError } from "@/http/routes/_errors/bad-request-error";
-import { prisma } from "@/lib/prisma";
-import { createSlug } from "@/utils/create-slug";
+import { auth } from "@/http/middlewares/auth"
+import { BadRequestError } from "@/http/routes/_errors/bad-request-error"
+import { prisma } from "@/lib/prisma"
+import { createSlug } from "@/utils/create-slug"
 
 export async function createOrganization(app: FastifyInstance) {
   app
@@ -31,21 +31,21 @@ export async function createOrganization(app: FastifyInstance) {
         },
       },
       async (request, reply) => {
-        const userId = await request.getCurrentUserId();
+        const userId = await request.getCurrentUserId()
 
-        const { name, domain, shouldAttachUsersByDomain } = request.body;
+        const { name, domain, shouldAttachUsersByDomain } = request.body
 
         if (domain) {
           const organizationByDomain = await prisma.organization.findUnique({
             where: {
               domain,
             },
-          });
+          })
 
           if (organizationByDomain) {
             throw new BadRequestError(
-              "Another organization with same domain already exists.",
-            );
+              "Another organization with same domain already exists."
+            )
           }
         }
 
@@ -63,11 +63,13 @@ export async function createOrganization(app: FastifyInstance) {
               },
             },
           },
-        });
+        })
+
+        await app.redis.del(`user:${userId}:organizations`)
 
         return reply.status(201).send({
           organizationId: organization.id,
-        });
-      },
-    );
+        })
+      }
+    )
 }

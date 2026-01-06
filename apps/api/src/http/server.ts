@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import fastifyCors from "@fastify/cors"
 import fastifyJwt from "@fastify/jwt"
+import fastifyRedis from "@fastify/redis"
 import fastifySwagger from "@fastify/swagger"
 import fastifySwaggerUI from "@fastify/swagger-ui"
 import { env } from "@saas/env"
@@ -81,6 +82,10 @@ app.register(fastifyJwt, {
 
 app.register(fastifyCors)
 
+app.register(fastifyRedis, {
+  url: env.REDIS_URL,
+})
+
 app.register(createAccount)
 app.register(authenticateWithPassword)
 app.register(authenticateWithGithub)
@@ -116,6 +121,6 @@ app.register(getPendingInvites)
 
 app.register(getOrganizationBilling)
 
-app.listen({ port: env.SERVER_PORT, host: "0.0.0.0" }).then(() => {
+app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log("HTTP server running!")
 })

@@ -11,6 +11,7 @@ export const env = createEnv({
     GITHUB_OAUTH_CLIENT_ID: z.string(),
     GITHUB_OAUTH_CLIENT_SECRET: z.string(),
     GITHUB_OAUTH_CLIENT_REDIRECT_URI: z.string().url(),
+    REDIS_URL: z.string().url().default("redis://127.0.0.1:6379"),
   },
   client: {},
   shared: {
@@ -25,6 +26,7 @@ export const env = createEnv({
     GITHUB_OAUTH_CLIENT_REDIRECT_URI:
       process.env.GITHUB_OAUTH_CLIENT_REDIRECT_URI,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    REDIS_URL: process.env.REDIS_URL,
   },
   emptyStringAsUndefined: true,
 });
