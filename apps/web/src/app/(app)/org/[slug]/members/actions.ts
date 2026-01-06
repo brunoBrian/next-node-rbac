@@ -19,7 +19,7 @@ export async function removeMemberAction(memberId: string) {
 }
 
 export async function updateMemberAction(memberId: string, role: Role) {
-  const currentOrg = getCurrentOrg()
+  const currentOrg = await getCurrentOrg()
 
   await updateMember({
     org: currentOrg!,
@@ -28,4 +28,15 @@ export async function updateMemberAction(memberId: string, role: Role) {
   })
 
   revalidateTag(`${currentOrg}/members`)
+}
+
+export async function revokeInviteAction(inviteId: string) {
+  const currentOrg = getCurrentOrg()
+
+  await revokeInvite({
+    org: currentOrg!,
+    inviteId,
+  })
+
+  revalidateTag(`${currentOrg}/invites`)
 }
