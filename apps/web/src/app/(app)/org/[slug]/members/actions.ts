@@ -17,7 +17,7 @@ const inviteSchema = z.object({
 })
 
 export async function createInviteAction(data: FormData) {
-  const currentOrg = await getCurrentOrg()!
+  const currentOrg = await getCurrentOrg()
   const result = inviteSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {
@@ -30,7 +30,7 @@ export async function createInviteAction(data: FormData) {
 
   try {
     await createInvite({
-      org: currentOrg,
+      org: currentOrg!,
       email,
       role,
     })
