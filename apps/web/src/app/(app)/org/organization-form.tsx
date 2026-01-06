@@ -9,12 +9,27 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useFormState } from "@/hooks/use-form-state";
 
-import { createOrganizationAction } from "../create-organization/actions";
+import {
+  createOrganizationAction,
+  OrganizationSchema,
+  updateOrganizationAction,
+} from "./actions";
 
-export function OrganizationForm() {
-  const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
-    createOrganizationAction,
-  );
+interface OrganizationFormProps {
+  isUpdating?: boolean;
+  initialData?: OrganizationSchema;
+}
+
+export function OrganizationForm({
+  isUpdating = false,
+  initialData,
+}: OrganizationFormProps) {
+  const formAction = isUpdating
+    ? updateOrganizationAction
+    : createOrganizationAction;
+
+  const [{ errors, message, success }, handleSubmit, isPending] =
+    useFormState(formAction);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

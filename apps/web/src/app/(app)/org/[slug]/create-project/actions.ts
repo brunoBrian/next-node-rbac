@@ -26,7 +26,7 @@ export async function createProjectAction(data: FormData) {
 
   try {
     await createProject({
-      org: getCurrentOrg()!,
+      org: await getCurrentOrg()!,
       name,
       description,
     });
