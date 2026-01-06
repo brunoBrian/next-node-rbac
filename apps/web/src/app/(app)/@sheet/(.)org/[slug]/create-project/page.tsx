@@ -21,7 +21,7 @@ export default function CreateProject() {
     >
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Create organization</SheetTitle>
+          <SheetTitle>Create project</SheetTitle>
         </SheetHeader>
         <div className="px-4 py-4">
           <ProjectForm />
